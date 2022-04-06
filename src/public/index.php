@@ -15,6 +15,7 @@ use Phalcon\Session\Manager;
 use Phalcon\Http\Response\Cookies;
 use Phalcon\Session\Adapter\Stream;
 use Phalcon\Config\ConfigFactory;
+require '../vendor/autoload.php';
 
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
