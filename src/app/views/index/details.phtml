@@ -10,31 +10,50 @@
 </head>
 
 <body>
-    <section class="py-5">
+    <section class="">
         <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="row gx-4 gx-lg-5 align-i tems-center">
                 <?php $html = "";
-                error_reporting(0);
-                $html .= '<div class="col-md-6"> <img class="card-img-top setimg" src="//covers.openlibrary.org/b/olid/' . $img . '.jpg" alt="Card image"></div>
-    <div class="col-md-6">
-
-        <h1 class="display-5 fw-bolder">' . $response['title'] . '</h1>
-        <div class="fs-5 mb-5">
-
-
-        </div>
-        <p class="lead">Author: ' . $response['authors'][0]['name'] . '</p>
-        <p class="lead">Publisher: ' . $response['publishers'][0] . '</p>
-        <div class="d-flex">';
-                if (!empty($googleID)) {
-                    $html .= '<a class="btn btn-success" href="https://www.google.co.in/books/edition/_/' . $googleID . '?hl=en">Open From Google</a>
-        </div>
+                $id = str_replace("+", "-", $id);
+                // error_reporting(0);
+                $html .= '<div class="col col-md-1"> </div>
+    
+                <div class="col">
+        <h1 class="display-5 fw-bolder">' . $response['location']['name'] . '</h1>
+        <p class="lead">Region: ' . $response['location']['region'] . '</p>
+        <p class="lead">Country: ' . $response['location']['country'] . '</p>
+        <p class="lead">Current Timezone: ' . $response['location']['tz_id'] . '</p>
+        <p class="lead">Local Time: ' . $response['location']['localtime'] . '</p>
+    </div>
+    <div class="col float-end">
+    <h3 class="display-5 fw-bolder text-muted">Current Weather Conditions</h3>
+    <p class="display-5 fw-bolder"><img src="' . $response['current']['condition']['icon'] . '" alt="icon">' . $response['current']['condition']['text'] . '</p>
+    <p class="display-5 fw-bolder">Temperature: ' . $response['current']['temp_c'] . '&degC / ' . $response['current']['temp_f'] . ' F</p>
+   <form action="/index/details?id=' . $id . '&day=' . $response['current']['is_day'] . '" method="post">
+    <input type="submit" class="btn btn-outline-info" name="currentweather" value="Current Weather">
+    <input type="submit" class="btn btn-outline-success" name="forecast" value="Forecast"> 
+    <input type="submit" class="btn btn-outline-dark" name="history" value="History"> 
+    <input type="submit" class="btn btn-outline-secondary" name="timezone" value="Time Zone"><br><br> 
+    <input type="submit" class="btn btn-outline-secondary" name="sports" value="Sports"> 
+    <input type="submit" class="btn btn-outline-primary" name="astronomy" value="Astronomy"> 
+    <input type="submit" class="btn btn-outline-danger" name="weatheralerts" value="Weather Alerts">
+    <input type="submit" class="btn btn-outline-warning" name="aqi" value="Air Quality">
+    </form>
     </div>';
-                }
+
                 ?>
                 <?php echo $html; ?>
             </div>
         </div>
+        <div class="col" style="width:46%;float:right;">
+            <?php if ($answer) {
+                echo '<h3>'.$selected.'</h3><br>';
+                foreach ($answer as $k => $v) {
+                    echo $k . ': ' . $v . '<br>';
+                }
+            } ?>
+        </div>
+
     </section>
 </body>
 

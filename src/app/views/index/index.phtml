@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <title>BOOKS</title>
+    <title>Weather</title>
 </head>
 <style>
     @media (min-width: 1025px) {
@@ -26,14 +26,14 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-8 col-xl-6">
 
-                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-3 px-md-2 float-center">Search Book</h3>
+                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-3 px-md-2 float-center">Search Location</h3>
                     <form class="px-md-2" method="post" action="">
 
                         <div class="form-floating mb-3">
                             <input name="name" type="text" class="form-control" id="floatingInput" placeholder="Book Name">
-                            <label for="floatingInput">Book Name</label>
+                            <label for="floatingInput">Location</label>
                         </div>
-                        <input type="submit" value="Search" name="search" class="btn btn-success">
+                        <input type="submit" value="Get Locations" name="search" class="btn btn-success">
                 </div>
                 </form>
 
@@ -56,14 +56,15 @@
     // die($count);
     $html = '';
     foreach ($response as $value) {
-        $html .= '<div class="d-flex my-4 border p-3 bg-dark text-light m-5">
-        <img class="card-img-top" style="width: 14rem; height: 16rem" src="//covers.openlibrary.org/b/olid/' . $value['cover_edition_key'] . '.jpg" alt="Book Image">
-        <div class="card-body">
-          <p class="card-text"><h3>' . $value['title'] . '</h3></p>
-          <p class="card-text">by ' . implode(',  ', $value['author_name']) . '</p>
-          <p class="card-text text-muted">First published in ' . $value['first_publish_year'] . '</p>
-          <p class="card-text">' . $value['edition_count'] . ' editions' . '</p>
-          <a href="/index/details?id=' . $value['isbn'][0] . '&img=' . $value['cover_edition_key'] . '" class="btn btn-success">Want to read</a>
+        $html .= '<div class="border p-3 bg-dark text-light m-5">
+         <div class="card-body">
+          <p class="card-text"><h3>' . $value['name'] . '</h3></p>
+          <p class="card-text">Region: ' . $value['region'] . '</p>
+          <p class="card-text">Country: ' . $value['country'] . '</p>
+          <p class="card-text">Latitude: ' . $value['lat'] . '</p>
+          <p class="card-text">Longitude: ' . $value['lon'] . '</p>
+          
+          <a href="/index/details?id=' . $value['url'] . '" class="btn btn-primary">Details</a>
       </div>
       </div>';
     }
