@@ -29,7 +29,7 @@
     <h3 class="display-5 fw-bolder text-muted">Current Weather Conditions</h3>
     <p class="display-5 fw-bolder"><img src="' . $response['current']['condition']['icon'] . '" alt="icon">' . $response['current']['condition']['text'] . '</p>
     <p class="display-5 fw-bolder">Temperature: ' . $response['current']['temp_c'] . '&degC / ' . $response['current']['temp_f'] . ' F</p>
-   <form action="/index/details?id=' . $id . '&day=' . $response['current']['is_day'] . '" method="post">
+   <form action="/index/details?id=' . $this->request->get('id') . '&day=' . $response['current']['is_day'] . '" method="post">
     <input type="submit" class="btn btn-outline-info" name="currentweather" value="Current Weather">
     <input type="submit" class="btn btn-outline-success" name="forecast" value="Forecast"> 
     <input type="submit" class="btn btn-outline-dark" name="history" value="History"> 
