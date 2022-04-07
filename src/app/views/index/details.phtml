@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title>Weather</title>
+    <link rel="icon" type="image/gif/png" href=<?php echo "../../../public/assets/images/titleimg.png"?> width="50" height="50" class="rounded mx-auto d-block" alt="icon">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
@@ -49,7 +51,7 @@
             <?php if ($answer) {
                 echo '<h3>'.$selected.'</h3><br>';
                 foreach ($answer as $k => $v) {
-                    echo $k . ': ' . $v . '<br>';
+                    echo '<b>'.$k.'</b>' . ': ' . $v . '<br>';
                 }
             } ?>
         </div>

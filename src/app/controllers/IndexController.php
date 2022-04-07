@@ -120,8 +120,9 @@ class IndexController extends Controller
             $this->view->selected = "Weather Alerts";
         } elseif ($this->request->getPost('aqi')) { //air quality
             $this->view->selected = "Air Quality";
-            $response = $client->request('GET', 'current.json?q=' . $id . '&key=0bab7dd1bacc418689b143833220304');
+            $response = $client->request('GET', 'current.json?q=' . $id . '&key=0bab7dd1bacc418689b143833220304&aqi=yes');
             $response = json_decode($response->getBody(), true);
+
             $this->view->answer = array(
                 'CO' => $response['current']['air_quality']['co'],
                 'NO2' => $response['current']['air_quality']['no2'],
